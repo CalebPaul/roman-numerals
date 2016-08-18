@@ -16,8 +16,13 @@ function romanConverter(number) {
       }
     }
     else if (romArray[i] === 100) {
-      for (var j = 0; j < Math.floor((number % 500) / romArray[i]); j++) {
-        romNum += "C";
+      if(Math.floor((number % 500) / romArray[i]) === 4) {
+        romNum += "CD";
+      }
+      else {
+        for (var j = 0; j < Math.floor((number % 500) / romArray[i]); j++) {
+          romNum += "C";
+        }
       }
     }
     else if (romArray[i] === 50) {
@@ -26,8 +31,13 @@ function romanConverter(number) {
       }
     }
     else if (romArray[i] === 10) {
-      for (var j = 0; j < Math.floor((number % 50) / romArray[i]); j++) {
-        romNum += "X";
+      if(Math.floor((number % 50) / romArray[i]) === 4) {
+        romNum += "XL";
+      }
+      else {
+        for (var j = 0; j < Math.floor((number % 50) / romArray[i]); j++) {
+          romNum += "X";
+        }
       }
     }
     else if (romArray[i] === 5) {
@@ -36,14 +46,17 @@ function romanConverter(number) {
       }
     }
     else {
-      for (var j = 0; j < Math.floor((number % 5) / romArray[i]); j++) {
-        romNum += "I";
+      if(Math.floor((number % 5) / romArray[i]) === 4) {
+        romNum += "IV";
+      }
+      else {
+        for (var j = 0; j < Math.floor((number % 5) / romArray[i]); j++) {
+          romNum += "I";
+        }
       }
     }
   }
     number % romArray[i];
-
-
 
   return romNum
 }
