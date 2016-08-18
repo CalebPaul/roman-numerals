@@ -11,12 +11,17 @@ function romanConverter(number) {
       }
     }
     else if (romArray[i] === 500) {
-      for (var j = 0; j < Math.floor((number % 1000) /romArray[i]); j++) {
-        romNum += "D";
+      if(Math.floor((number % 1000) / 100) !== 9) {
+        for (var j = 0; j < Math.floor((number % 1000) /romArray[i]); j++) {
+          romNum += "D";
+        }
       }
     }
     else if (romArray[i] === 100) {
-      if(Math.floor((number % 500) / romArray[i]) === 4) {
+      if(Math.floor((number % 1000) / 100) === 9) {
+        romNum +="CM";
+      }
+      else if(Math.floor((number % 500) / romArray[i]) === 4) {
         romNum += "CD";
       }
       else {
@@ -26,12 +31,17 @@ function romanConverter(number) {
       }
     }
     else if (romArray[i] === 50) {
-      for (var j = 0; j < Math.floor((number % 100) / romArray[i]); j++) {
-        romNum += "L";
+      if (Math.floor((number % 100) / 10) !== 9) {
+        for (var j = 0; j < Math.floor((number % 100) / romArray[i]); j++) {
+          romNum += "L";
+        }
       }
     }
     else if (romArray[i] === 10) {
-      if(Math.floor((number % 50) / romArray[i]) === 4) {
+      if(Math.floor((number % 100) / 10) === 9) {
+        romNum +="XC";
+      }
+      else if(Math.floor((number % 50) / romArray[i]) === 4) {
         romNum += "XL";
       }
       else {
@@ -41,12 +51,17 @@ function romanConverter(number) {
       }
     }
     else if (romArray[i] === 5) {
-      for (var j = 0; j < Math.floor((number % 10) / romArray[i]); j++) {
-        romNum += "V";
+      if(number % 10 !== 9) {
+        for (var j = 0; j < Math.floor((number % 10) / romArray[i]); j++) {
+          romNum += "V";
+        }
       }
     }
     else {
-      if(Math.floor((number % 5) / romArray[i]) === 4) {
+      if(number % 10 === 9) {
+        romNum += "IX";
+      }
+      else if(number % 10 === 4) {
         romNum += "IV";
       }
       else {
