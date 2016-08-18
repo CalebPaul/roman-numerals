@@ -10,6 +10,7 @@ function romanConverter(number) {
         romNum += "M";
       }
     }
+    //i = 500
     else if (romArray[i] === 500) {
       if(Math.floor((number % 1000) / 100) !== 9) {
         for (var j = 0; j < Math.floor((number % 1000) /romArray[i]); j++) {
@@ -17,6 +18,7 @@ function romanConverter(number) {
         }
       }
     }
+    //i = 100
     else if (romArray[i] === 100) {
       if(Math.floor((number % 1000) / 100) === 9) {
         romNum +="CM";
@@ -30,6 +32,7 @@ function romanConverter(number) {
         }
       }
     }
+    //i = 50
     else if (romArray[i] === 50) {
       if (Math.floor((number % 100) / 10) !== 9) {
         for (var j = 0; j < Math.floor((number % 100) / romArray[i]); j++) {
@@ -37,35 +40,38 @@ function romanConverter(number) {
         }
       }
     }
-    else if (romArray[i] === 10) {
+    //i = 10
+    else if (romArray[i] === 10 && number % 10 !== 0) {
       if(Math.floor((number % 100) / 10) === 9) {
         romNum +="XC";
       }
-      else if(Math.floor((number % 50) / romArray[i]) === 4) {
+      else if(Math.floor((romArray[i-1]) / romArray[i]) === 4) {
         romNum += "XL";
       }
       else {
-        for (var j = 0; j < Math.floor((number % 50) / romArray[i]); j++) {
+        for (var j = 0; j < Math.floor((romArray[i-1]) / romArray[i]); j++) {
           romNum += "X";
         }
       }
     }
+    //i = 5
     else if (romArray[i] === 5) {
-      if(number % 10 !== 9) {
-        for (var j = 0; j < Math.floor((number % 10) / romArray[i]); j++) {
+      if(number % romArray[i-1] !== 9) {
+        for (var j = 0; j < Math.floor((number % romArray[i-1]) / romArray[i]); j++) {
           romNum += "V";
         }
       }
     }
+    //i = 1
     else {
-      if(number % 10 === 9) {
+      if(Math.floor((number % romArray[i-2]) / romArray[i]) === 9) {
         romNum += "IX";
       }
-      else if(number % 10 === 4) {
+      else if(Math.floor((number % romArray[i-1]) / romArray[i]) === 4) {
         romNum += "IV";
       }
       else {
-        for (var j = 0; j < Math.floor((number % 5) / romArray[i]); j++) {
+        for (var j = 0; j < Math.floor((number % romArray[i-1]) / romArray[i]); j++) {
           romNum += "I";
         }
       }
